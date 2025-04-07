@@ -8,10 +8,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // colors: {
-      //   background: "var(--background)",
-      //   foreground: "var(--foreground)",
-      // },
+      colors: {
+        // Colores personalizados
+        primary: {
+          DEFAULT: "oklch(0.872 0.01 258.338)", // Azul estándar (puedes cambiarlo)
+          nose: "#059669", // Azul más oscuro al hover
+        },
+        secondary: {
+          DEFAULT: "oklch(0.457 0.24 277.023)", // Verde esmeralda
+          hover: "#059669",
+        },
+      },
+      backgroundImage: {
+        grafico: "url(../public/grafico.svg)",
+      },
+      backgroundSize: {
+        "30": "30rem",
+      },
     },
   },
   plugins: [],

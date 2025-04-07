@@ -17,7 +17,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-        <h1>Cashtrackr</h1>
         {children}
       </body>
     </html>
