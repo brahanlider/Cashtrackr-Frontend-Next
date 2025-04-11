@@ -1,38 +1,35 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import { register } from "@/actions/create-account-actions";
-import { FieldError } from "../ui/ErrorMessage";
-import SuccessMessage from "../ui/SuccessMessage";
+import { register } from "@/actions/create-account-actions-juan";
 import { useEffect, useRef } from "react";
 
-export default function RegisterForm() {
+export default function RegisterFormJuan() {
   const ref = useRef<HTMLFormElement>(null);
+
   const [state, formAction] = useFormState(register, {
-    errors: {
-      email: [],
-      name: [],
-      password: [],
-      password_confirmation: [],
-    },
+    errors: [],
     success: "",
   });
 
   useEffect(() => {
     if (state.success) {
-      // Se reinicia el formulario
       ref.current?.reset();
     }
   }, [state]);
 
-  console.log("----------------------------------");
   console.log(state);
   return (
     <>
-      {/* Mostrar mensaje general */}
-      {state.success && <SuccessMessage>{state.success}</SuccessMessage>}
-
       <form ref={ref} action={formAction} className="space-y-4" noValidate>
+        {state.success && <p className="bg-green-600 p-2">{state.success}</p>}
+
+        {state.errors.map((error) => (
+          <p key={error} className="bg-red-600 text-white p-2">
+            {error}
+          </p>
+        ))}
+
         <div className="flex flex-col gap-2">
           <label htmlFor="email" className="font-bold text-2xl">
             Email
@@ -44,7 +41,6 @@ export default function RegisterForm() {
             placeholder="Email de Registro"
             className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-secondary"
           />
-          <FieldError errors={state.errors?.email} className="mt-1" />
         </div>
 
         <div className="flex flex-col gap-2">
@@ -58,8 +54,6 @@ export default function RegisterForm() {
             placeholder="Nombre de Registro"
             className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-secondary"
           />
-
-          <FieldError errors={state.errors?.name} className="mt-1" />
         </div>
 
         <div className="flex flex-col gap-2">
@@ -73,7 +67,6 @@ export default function RegisterForm() {
             placeholder="Password de Registro"
             className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-secondary"
           />
-          <FieldError errors={state.errors?.password} className="mt-1" />
         </div>
 
         <div className="flex flex-col gap-2">
@@ -86,10 +79,6 @@ export default function RegisterForm() {
             name="password_confirmation"
             placeholder="Repetir Password de Registro"
             className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-secondary"
-          />
-          <FieldError
-            errors={state.errors?.password_confirmation}
-            className="mt-1"
           />
         </div>
 

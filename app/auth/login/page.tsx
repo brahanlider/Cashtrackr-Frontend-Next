@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default function LoginPage() {
-  console.log("RegisterPage");
   return (
     <>
       <h1 className="font-black text-6xl text-secondary">Iniciar Sesión</h1>

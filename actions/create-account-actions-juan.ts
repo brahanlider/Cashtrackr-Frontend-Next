@@ -6,30 +6,16 @@ import {
   SuccessSchema,
 } from "@/src/schemas";
 
-/**
- * Acción del servidor para procesar el registro de usuarios
- *
- * @param prevState - Estado anterior del formulario (usado por useFormState)
- * @param formData - Datos del formulario enviados desde el cliente
- * @re
- *
- * */
-
 export type ActionStateType = {
-  errors?: {
-    email?: string[];
-    name?: string[];
-    password?: string[];
-    password_confirmation?: string[];
-  };
-  success?: string;
+  errors: string[];
+  success: string;
 };
 
 export async function register(
   prevState: ActionStateType,
   formData: FormData
 ): Promise<ActionStateType> {
-  //1 EXTRACCIÓN DE DATOS DEL FORMULARIO => FormData
+  //
   const registerFormData = {
     email: formData.get("email"),
     name: formData.get("name"),
@@ -37,23 +23,24 @@ export async function register(
     password_confirmation: formData.get("password_confirmation"),
   };
 
-  // 2 VALIDACIÓN DE DATOS CON ZOD
+  // revalidate cache - VALIDATE
   const register = RegisterSchema.safeParse(registerFormData);
   if (!register.success) {
-    const errors = register.error.flatten().fieldErrors;
+    const errors = register.error.errors.map((error) => error.message); //devuelve array con strings,
     return {
-      success: "",
       errors,
+      success: "",
     };
   }
 
-  // 3. REGISTRO EN LA API EXTERNA
+  // Mutate data
   const url = `${process.env.API_URL}/auth/create-account`;
   const req = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    // body: JSON.stringify(userData),
     body: JSON.stringify({
       email: register.data.email,
       name: register.data.name,
@@ -63,12 +50,11 @@ export async function register(
 
   const reqData = await req.json();
 
-  console.log(req.status);
   if (req.status === 409) {
     const error = ErrorResponseSchema.parse(reqData);
 
     return {
-      errors: { email: [error.error] },
+      errors: [error.error],
       success: "",
     };
   }
@@ -76,7 +62,7 @@ export async function register(
   const success = SuccessSchema.parse(reqData);
 
   return {
-    errors: {},
+    errors: [],
     success: success,
   };
 }

@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/auth/RegisterForm";
+import RegisterFormJuan from "@/components/auth/RegisterForm-juan";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Regitro de cuenta",
 };
 
-export default function RegisterPage() {
+export default function RegisterPageJuan() {
   return (
     <>
       <h1 className="font-black sm:text-6xl text-5xl text-secondary">
@@ -17,7 +17,7 @@ export default function RegisterPage() {
         y controla tus <span className="text-amber-500">finanzas</span>
       </p>
 
-      <RegisterForm />
+      <RegisterFormJuan />
 
       <nav className="flex flex-col mt-5 text-center gap-3">
         <Link href="/auth/login" className="text-secondary">
