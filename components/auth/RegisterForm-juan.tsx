@@ -18,7 +18,6 @@ export default function RegisterFormJuan() {
     }
   }, [state]);
 
-  console.log(state);
   return (
     <>
       <form ref={ref} action={formAction} className="space-y-4" noValidate>

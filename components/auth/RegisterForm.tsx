@@ -25,8 +25,6 @@ export default function RegisterForm() {
     }
   }, [state]);
 
-  console.log("----------------------------------");
-  console.log(state);
   return (
     <>
       {/* Mostrar mensaje general */}

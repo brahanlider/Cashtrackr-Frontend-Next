@@ -63,7 +63,6 @@ export async function register(
 
   const reqData = await req.json();
 
-  console.log(req.status);
   if (req.status === 409) {
     const error = ErrorResponseSchema.parse(reqData);
 

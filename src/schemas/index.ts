@@ -23,3 +23,8 @@ export const SuccessSchema = z.string();
 export const ErrorResponseSchema = z.object({
   error: z.string(),
 });
+
+//token
+export const tokenSchema = z
+  .string({ message: "Token no válido" })
+  .length(6, { message: "Token no válido" });
