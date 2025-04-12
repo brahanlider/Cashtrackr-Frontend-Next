@@ -37,3 +37,13 @@ export const loginSchema = z.object({
     .email({ message: "E-mail no válido" }),
   password: z.string().min(1, { message: "El password no puede ir vacio" }),
 });
+
+//user
+export const UserSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  email: z.string().email(),
+});
+
+// user componente client
+export type User = z.infer<typeof UserSchema>;

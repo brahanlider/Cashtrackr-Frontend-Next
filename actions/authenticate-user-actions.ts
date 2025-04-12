@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { ErrorResponseSchema, loginSchema } from "@/src/schemas";
 
 type ActionStateType = {
@@ -66,7 +67,10 @@ export async function authenticate(
     // secure: "licencia SSL" &  IMPORTANTE: Habilitar en producción (HTTPS)
   });
 
-  return {
-    errors: [],
-  };
+  //usuario authenticado lo lleva =>
+  redirect("/admin");
+
+  // return {
+  //   errors: [],
+  // };
 }

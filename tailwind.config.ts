@@ -16,7 +16,11 @@ const config: Config = {
         },
         secondary: {
           DEFAULT: "oklch(0.457 0.24 277.023)", // Verde esmeralda
-          hover: "#059669",
+          intenso: "#059669",
+        },
+        tertiary: {
+          DEFAULT: "rgb(255, 149, 0)",
+          claro: "rgb(255, 164, 0)",
         },
       },
       backgroundImage: {
