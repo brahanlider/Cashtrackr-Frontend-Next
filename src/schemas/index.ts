@@ -28,3 +28,12 @@ export const ErrorResponseSchema = z.object({
 export const tokenSchema = z
   .string({ message: "Token no válido" })
   .length(6, { message: "Token no válido" });
+
+//login
+export const loginSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: "El Email es obligatorio" })
+    .email({ message: "E-mail no válido" }),
+  password: z.string().min(1, { message: "El password no puede ir vacio" }),
+});
