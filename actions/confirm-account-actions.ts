@@ -1,6 +1,6 @@
 "use server";
 
-import { ErrorResponseSchema, SuccessSchema, tokenSchema } from "@/src/schemas";
+import { ErrorResponseSchema, SuccessSchema, TokenSchema } from "@/src/schemas";
 
 type ActionStateType = {
   errors: string[];
@@ -18,7 +18,7 @@ export async function confirmAccount(
   token: string,
   prevState: ActionStateType
 ) {
-  const confirmToken = tokenSchema.safeParse(token);
+  const confirmToken = TokenSchema.safeParse(token);
 
   if (!confirmToken.success) {
     return {

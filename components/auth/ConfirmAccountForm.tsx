@@ -53,26 +53,18 @@ export default function ConfirmAccountForm() {
   };
   return (
     <>
-      {/* {state.errors.map((error) => (
-        <p key={error} className="bg-red-600 text-white p-2">
-          {error}
-        </p>
-      ))} */}
-
-      {/* {state.success && <p className="bg-green-600 p-2">{state.success}</p>} */}
-
       <PinInput
         value={token}
         onChange={handleChange}
         onComplete={handleComplete}
       >
         <div className=" flex gap-3 justify-center items-center">
-          <PinInputField className="p-1 w-10 text-center border border-orange-400 rounded-md focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
-          <PinInputField className="p-1 w-10 text-center border border-orange-400 rounded-md focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
-          <PinInputField className="p-1 w-10 text-center border border-orange-400 rounded-md focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
-          <PinInputField className="p-1 w-10 text-center border border-orange-400 rounded-md focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
-          <PinInputField className="p-1 w-10 text-center border border-orange-400 rounded-md focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
-          <PinInputField className="p-1 w-10 text-center border border-orange-400 rounded-md focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
+          <PinInputField className="h-10 w-10 text-center border  border-tertiary shadow rounded-lg focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
+          <PinInputField className="h-10 w-10 text-center border  border-tertiary shadow rounded-lg focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
+          <PinInputField className="h-10 w-10 text-center border  border-tertiary shadow rounded-lg focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
+          <PinInputField className="h-10 w-10 text-center border  border-tertiary shadow rounded-lg focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
+          <PinInputField className="h-10 w-10 text-center border  border-tertiary shadow rounded-lg focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
+          <PinInputField className="h-10 w-10 text-center border  border-tertiary shadow rounded-lg focus:border-secondary focus:border-secondary/5 focus:border-secondary/2 outline-none transition-all placeholder-white" />
         </div>
       </PinInput>
     </>
