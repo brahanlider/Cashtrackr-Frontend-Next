@@ -3,9 +3,9 @@ import "server-only"; //* => módulo solo se ejecute en el servidor
 
 import { cache } from "react"; // asegura memorizar resultados y evitar llamadas redundantes
 
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { UserSchema } from "../schemas";
+import getToken from "./token";
 
 /**
  * Verifica la sesión del usuario actual
@@ -15,7 +15,7 @@ import { UserSchema } from "../schemas";
 
 export const verifySession = cache(async () => {
   //* 1. Obtener token de las cookies
-  const token = cookies().get("CASHTRACKR_TOKEN")?.value;
+  const token = getToken()
   if (!token) {
     redirect("/auth/login"); // Redirige si no hay token
   }

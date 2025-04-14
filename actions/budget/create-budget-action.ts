@@ -1,10 +1,10 @@
 "use server";
 
+import getToken from "@/src/auth/token";
 import {
   CreateBudgetSchema,
   SuccessSchema,
 } from "@/src/schemas";
-import { cookies } from "next/headers";
 
 type ActionStateType = {
   errors: string[];
@@ -29,7 +29,7 @@ export async function createBudget(
   }
 
   // extraer el token de la Cookies
-  const token = cookies().get("CASHTRACKR_TOKEN")?.value;
+  const token = getToken()
 
   // extraer la api
   const url = `${process.env.API_URl}/budgets`;

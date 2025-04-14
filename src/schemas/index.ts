@@ -70,7 +70,20 @@ export const CreateBudgetSchema = z.object({
   }),
 });
 
+// Schema para un solo presupuesto
+export const BudgetAPIResponseSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  amount: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  userId: z.number(),
+});
 
+export type Budget = z.infer<typeof BudgetAPIResponseSchema>;
+
+// Schema para la respuesta completa
+export const BudgetsAPIResponseSchema = z.array(BudgetAPIResponseSchema);
 
 //*VALIDACIONES =
 export const SuccessSchema = z.string();
