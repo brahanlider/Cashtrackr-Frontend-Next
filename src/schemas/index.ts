@@ -60,6 +60,18 @@ export const ResetPasswordSchema = z
     path: ["password_confirmation"],
   });
 
+//Draft budget schema ===> NOSE PORQUE
+export const CreateBudgetSchema = z.object({
+  name: z
+    .string()
+    .min(1, { message: "El Nombre del presupuesto es obligatorio" }),
+  amount: z.coerce.number({ message: "Cantidad no válida" }).min(1, {
+    message: "Cantidad no válida",
+  }),
+});
+
+
+
 //*VALIDACIONES =
 export const SuccessSchema = z.string();
 // Controller => Error 409 de createAccount
