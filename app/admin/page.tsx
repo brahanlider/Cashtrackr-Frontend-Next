@@ -20,6 +20,10 @@ async function getAllBudgets() {
     headers: {
       Authorization: `Bearer ${token}`, // Envía token en el header
     },
+    // para validateTag
+    // next: {
+    //   tags: ["all-budgets"],
+    // },
   });
 
   const reqData = await req.json();
