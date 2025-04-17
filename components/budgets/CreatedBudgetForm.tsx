@@ -23,14 +23,18 @@ export default function CreatedBudgetForm() {
     }
 
     if (state.success) {
-      toast.success(state.success, {
-        onClose: () => {
-          router.push("/admin");
-        },
-        onClick: () => {
-          router.push("/admin");
-        },
-      });
+      toast.success(state.success);
+      // REEMPLAZO
+      router.push("/admin");
+      //   ,  {
+      // onClose: () => {
+      //   router.push("/admin");
+      // },
+      // onClick: () => {
+      //   router.push("/admin");
+      // },
+      // }
+      // );
     }
   }, [state, router]);
 
@@ -49,3 +53,4 @@ export default function CreatedBudgetForm() {
     </>
   );
 }
+

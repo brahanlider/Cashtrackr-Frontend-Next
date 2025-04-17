@@ -70,6 +70,10 @@ export const CreateBudgetSchema = z.object({
   }),
 });
 
+export const PasswordValidationSchema = z
+  .string()
+  .min(1, { message: "Password no válido" });
+
 // Schema para un solo presupuesto
 export const BudgetAPIResponseSchema = z.object({
   id: z.number(),

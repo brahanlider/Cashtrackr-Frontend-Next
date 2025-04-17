@@ -1,10 +1,8 @@
 "use server";
 
 import getToken from "@/src/auth/token";
-import {
-  CreateBudgetSchema,
-  SuccessSchema,
-} from "@/src/schemas";
+import { CreateBudgetSchema, SuccessSchema } from "@/src/schemas";
+import { revalidatePath } from "next/cache";
 
 type ActionStateType = {
   errors: string[];
@@ -29,7 +27,7 @@ export async function createBudget(
   }
 
   // extraer el token de la Cookies
-  const token = getToken()
+  const token = getToken();
 
   // extraer la api
   const url = `${process.env.API_URl}/budgets`;
@@ -55,6 +53,7 @@ export async function createBudget(
   //     success: "",
   //   };
   // }
+  revalidatePath("/admin"); //=> Recarga y lo obtenemos los nuevos
 
   const success = SuccessSchema.parse(reqData);
 
