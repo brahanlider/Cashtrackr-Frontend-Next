@@ -74,6 +74,16 @@ export const PasswordValidationSchema = z
   .string()
   .min(1, { message: "Password no válido" });
 
+//* Schema de -api/budgets/13- => expenses": []
+export const ExpenseAPIResponseSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  amount: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  budgetId: z.number(),
+});
+
 // Schema para un solo presupuesto
 export const BudgetAPIResponseSchema = z.object({
   id: z.number(),
@@ -82,12 +92,16 @@ export const BudgetAPIResponseSchema = z.object({
   createdAt: z.string(),
   updatedAt: z.string(),
   userId: z.number(),
+  //Schema de -api/budgets/13- => expenses": []
+  expenses: z.array(ExpenseAPIResponseSchema),
 });
 
 export type Budget = z.infer<typeof BudgetAPIResponseSchema>;
 
 // Schema para la respuesta completa
-export const BudgetsAPIResponseSchema = z.array(BudgetAPIResponseSchema);
+export const BudgetsAPIResponseSchema = z.array(
+  BudgetAPIResponseSchema.omit({ expenses: true })
+);
 
 //* VALIDACIONES =
 export const SuccessSchema = z.string();
@@ -107,3 +121,5 @@ export const CreateExpenseSchema = z.object({
     message: "Cantidad no válida",
   }),
 });
+
+export type Expense = z.infer<typeof ExpenseAPIResponseSchema>;
