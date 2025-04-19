@@ -117,9 +117,10 @@ export const CreateExpenseSchema = z.object({
     .string()
     .min(1, { message: "El Nombre del presupuesto es obligatorio" }),
 
-  amount: z.coerce.number({ message: "Cantidad no válida" }).min(1, {
+  amount: z.coerce.number().min(1, {
     message: "Cantidad no válida",
   }),
 });
 
 export type Expense = z.infer<typeof ExpenseAPIResponseSchema>;
+export type DraftExpense = z.infer<typeof CreateExpenseSchema>;

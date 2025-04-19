@@ -16,8 +16,8 @@ import DeleteExpenseForm from "../expenses/DeleteExpenseForm";
 
 const componentsMap = {
   AddExpense: AddExprenseForm,
-  EditExpenseForm: EditExpenseForm,
-  DeleteExpenseForm: DeleteExpenseForm,
+  EditExpense: EditExpenseForm,
+  DeleteExpense: DeleteExpenseForm,
 };
 
 export default function ModalContainer() {
@@ -32,9 +32,11 @@ export default function ModalContainer() {
   const show = showModal ? true : false;
 
   const addExpense = searchParams.get("addExpense"); // "true" o null
+  const editExpense = searchParams.get("editExpenseId"); // "true" o null
 
   const getComponentName = () => {
     if (addExpense) return "AddExpense";
+    if (editExpense) return "EditExpense";
   };
   const componentName = getComponentName();
   const ComponentToRender = componentName ? componentsMap[componentName] : null;
