@@ -89,9 +89,21 @@ export type Budget = z.infer<typeof BudgetAPIResponseSchema>;
 // Schema para la respuesta completa
 export const BudgetsAPIResponseSchema = z.array(BudgetAPIResponseSchema);
 
-//*VALIDACIONES =
+//* VALIDACIONES =
 export const SuccessSchema = z.string();
 // Controller => Error 409 de createAccount
 export const ErrorResponseSchema = z.object({
   error: z.string(),
+});
+
+//* Expense:
+//Draft Expense schema ===> NOSE PORQUE
+export const CreateExpenseSchema = z.object({
+  name: z
+    .string()
+    .min(1, { message: "El Nombre del presupuesto es obligatorio" }),
+
+  amount: z.coerce.number({ message: "Cantidad no válida" }).min(1, {
+    message: "Cantidad no válida",
+  }),
 });
