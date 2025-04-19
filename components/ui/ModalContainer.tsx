@@ -33,10 +33,12 @@ export default function ModalContainer() {
 
   const addExpense = searchParams.get("addExpense"); // "true" o null
   const editExpense = searchParams.get("editExpenseId"); // "true" o null
+  const deleteExpenseId = searchParams.get("deleteExpenseId"); // "true" o null
 
   const getComponentName = () => {
     if (addExpense) return "AddExpense";
     if (editExpense) return "EditExpense";
+    if (deleteExpenseId) return "DeleteExpense";
   };
   const componentName = getComponentName();
   const ComponentToRender = componentName ? componentsMap[componentName] : null;
