@@ -2,14 +2,28 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { DialogTitle } from "@headlessui/react";
 import { useFormState } from "react-dom";
 import { deleteBudget } from "@/actions/budget/delete-budget-actions";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { toast } from "react-toastify";
 
 export default function ConfirmPasswordForm() {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
+
   const budgetId = +searchParams.get("deleteBudgetId")!; //* Obtenemos el id Number
+
+  // const closeModal = () => {
+  //   const hideModal = new URLSearchParams(searchParams.toString());
+  //   hideModal.delete("deleteBudgetId");
+  //   router.replace(`${pathname}?${hideModal}`);
+  // };
+
+  //ESLINT
+  const closeModal = useCallback(() => {
+    const hideModal = new URLSearchParams(searchParams.toString());
+    hideModal.delete("deleteBudgetId");
+    router.replace(`${pathname}?${hideModal}`);
+  }, [searchParams, router, pathname]);
 
   const deleteBudgetWithPassword = deleteBudget.bind(null, budgetId);
   const [state, dispatch] = useFormState(deleteBudgetWithPassword, {
@@ -22,13 +36,7 @@ export default function ConfirmPasswordForm() {
       toast.success(state.success);
       closeModal();
     }
-  }, [state]);
-
-  const closeModal = () => {
-    const hideModal = new URLSearchParams(searchParams.toString());
-    hideModal.delete("deleteBudgetId");
-    router.replace(`${pathname}?${hideModal}`);
-  };
+  }, [state, closeModal]);
 
   return (
     <>

@@ -7,7 +7,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
 
-export const metaData: Metadata = {
+export const metadata: Metadata = {
   title: "Cashtrackr - Panel de administración",
   description: "Cashtrackr - Panel de administración",
 };
